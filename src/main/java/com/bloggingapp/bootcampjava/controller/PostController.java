@@ -34,7 +34,7 @@ public class PostController {
 
 	// Get All posts
 	@GetMapping("/posts")
-	public List<Post> getAllNotes() {
+	public List<Post> getAllPosts() {
 		return (List<Post>) postRepository.findAll();
 	}
 
