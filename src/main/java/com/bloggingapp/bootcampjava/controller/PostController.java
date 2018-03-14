@@ -32,7 +32,7 @@ public class PostController {
 	PostRepository postRepository;
 	UserRepository userRepository;
 
-	// Get All user
+	// Get All posts
 	@GetMapping("/posts")
 	public List<Post> getAllNotes() {
 		return (List<Post>) postRepository.findAll();
@@ -40,7 +40,7 @@ public class PostController {
 
 	// Create a new post
 	@PostMapping("/posts")
-	public Post createNote(@Valid @RequestBody Post post) {
+	public Post createPost(@Valid @RequestBody Post post) {
 		return postRepository.save(post);
 	}
 	
@@ -50,15 +50,15 @@ public class PostController {
 
 	
 
-	// Get a Single user
+	// Get a Single post
 	@GetMapping("/posts/{id}")
-	public Post getNoteById(@PathVariable(value = "id") Long userId) {
+	public Post getPostById(@PathVariable(value = "id") Long userId) {
 		return postRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Post", "id", userId));
 	}
 
-	// Update a User
+	// Update a Post
 	@PutMapping("/posts/{id}")
-	public Post updateNote(@PathVariable(value = "id") Long userId, @Valid @RequestBody Post noteDetails) {
+	public Post updatePost(@PathVariable(value = "id") Long userId, @Valid @RequestBody Post noteDetails) {
 
 		Post post = postRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
@@ -72,7 +72,7 @@ public class PostController {
 
 	// Delete a Post
 	@DeleteMapping("/posts/{id}")
-	public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long postId) {
+	public ResponseEntity<?> deletePost(@PathVariable(value = "id") Long postId) {
 		Post post = postRepository.findById(postId)
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "id", postId));
 
